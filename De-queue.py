@@ -1,29 +1,51 @@
 #De-queue
-import collections
-# Create a de-queue
-de_q=collections.deque()
+class Dequeue:
+    def __init__(self):
+        self.items = []
 
+    def isEmpty(self):
+        return self.items == []
+
+    def addFront(self, item):
+        self.items.append(item)
+
+    def addRear(self, item):
+        self.items.insert(0,item)
+
+    def removeFront(self):
+        return self.items.pop()
+
+    def removeRear(self):
+        return self.items.pop(0)
+
+d=Dequeue()   
 while True:
     print("\n1 Adding to right\n2 Adding to left\n3 Deleting from right\n4 Deleting from left\n5 Exit\n")
     c=int(input("Enter your choice : "))
     if c==1:
         print("Adding to the right: ") # Append to the right
         item=eval(input())
-        de_q.append(item)
-        print(de_q)
+        d.addFront(item)
+        print(d.items)
     elif c==2:
         print("Adding to the left: ") # Append to the left
         item=eval(input())
-        de_q.appendleft(item)
-        print(de_q)
+        d.addRear(item)
+        print(d.items)
     elif c==3:
         print("Removing from the right: ") # Remove from the right
-        de_q.pop()
-        print(de_q)
+        if d.isEmpty():
+            print('Underflow')
+        else:
+            d.removeFront()
+            print(d.items)
     elif c==4:
         print("Removing from the left: ") # Remove from the left
-        de_q.popleft()
-        print(de_q)
+        if d.isEmpty():
+            print('Underflow')
+        else:
+            d.removeRear()
+            print(d.items)
     elif c==5:
         exit()
     else:
